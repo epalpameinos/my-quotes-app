@@ -1,5 +1,5 @@
 
-## bring it online
+## host my app, research it!
 ## style, dimensioning
 ## mobile view to discuss it with Aggelos
 
