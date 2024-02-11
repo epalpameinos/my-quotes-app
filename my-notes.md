@@ -1,5 +1,4 @@
 
-## github
 ## bring it online
 ## style, dimensioning
 ## mobile view to discuss it with Aggelos
