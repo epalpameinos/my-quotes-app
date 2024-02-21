@@ -1,8 +1,15 @@
 
 const Quote = require('../models/Quote');
 
-
 module.exports = {
+    getQuotes: async (request, response) => {
+        try {
+            const quoteItems = await Quote.find();
+            response.render('quotes.ejs', {quotes: quoteItems});
+        } catch(error) {
+            console.log(error);
+        }
+    },
     createQuote: async (request, response) => {
         try {
             await Quote.create({quote: request.body.quoteText, author: request.body.quoteAuthor});

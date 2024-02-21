@@ -11,15 +11,44 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-header h1 {
-    margin-top: 1rem;
+h1 {
+    margin-top: 2.5rem;
     padding-left: 1rem;
     font-size: 2.5rem;
+    text-align: center;
+    color: purple;
+}
+
+.login-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-links a {
+    text-decoration: none;
+    color: tomato;
+    border-bottom: dotted 4px purple;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.signup-form {
+    max-width: 500px;
+    margin: auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .tiles {
     display: flex;
 	flex-wrap: wrap;
+    margin-top: 1.5rem;
 }
 
 .tiles article {
@@ -29,7 +58,6 @@ header h1 {
     margin: 1rem;
     border-radius: 8px;
     padding: 1rem;
-    /* background: yellowgreen; */
 }
 
 .tiles h3 {
@@ -41,15 +69,6 @@ header h1 {
     text-decoration: underline;
 }
 
-/* 
-.tiles article:hover {
-    background: yellow;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-    transform: scale3d(1.1, 1.1, 1.1);
-}
-
- */
 .tiles span {
     margin-top: 1rem;
     width: 50%;
@@ -71,4 +90,19 @@ footer h4 {
 
 .green {
     background: yellowgreen;
+}
+
+.logout {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+footer ul {
+    list-style: none;
+    font-size: 14px;
+    text-decoration: underline;
 }

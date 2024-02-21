@@ -1,10 +1,9 @@
 
 const express = require("express");
 const router = express.Router();
-const homeController = require("../controllers/home");
 const quotesController = require("../controllers/quotes");
 
-router.get("/", homeController.getQuotes);
+router.get("/", quotesController.getQuotes);
 router.post("/createQuote", quotesController.createQuote);
 
 router.put('/makeOrange', quotesController.makeOrange);
