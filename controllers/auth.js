@@ -73,5 +73,22 @@ exports.postSignup = async (request, response) => {
             });
         });
     }); */
+}
 
+exports.getLogin = (request, response) => {
+    if (request.user) {
+        return response.redirect('/quotes');
+    }
+    response.render('quotes');
+}
+
+exports.logout = (request, response) => {
+    request.logout(() => {
+        console.log('User has logged out..');
+    });
+    request.session.destroy((error) => {
+        if (error) console.log('Error : Failed to destroy the session during logout.', error);
+        request.user = null;
+        response.redirect('/');
+    });
 }
