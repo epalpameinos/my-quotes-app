@@ -24,10 +24,17 @@ UserSchema.pre('save', function save(next) {
 
 // helper method for validating user's password
 
-UserSchema.methods.comparePassword = function comparePassword(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, (error, isMatch) => {
-        cb(error, isMatch);
-    });
+UserSchema.methods.comparePassword = async function comparePassword(candidatePassword) {
+    try {
+        let verify_password = await bcrypt.compare(candidatePassword, this.password);
+        if (verify_password) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.log(error);    
+    }
 }
 
 

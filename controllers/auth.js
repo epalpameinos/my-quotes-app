@@ -79,7 +79,32 @@ exports.getLogin = (request, response) => {
     if (request.user) {
         return response.redirect('/quotes');
     }
-    response.render('quotes');
+    response.render('login');
+}
+
+exports.postLogin = (request, response, next) => {
+    const validationErrors = [];
+    if (!validator.isEmail(request.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
+    if (validator.isEmpty(request.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' });
+  
+    if (validationErrors.length) {
+        request.flash('errors', validationErrors);
+        return response.redirect('/login');
+    }
+    request.body.email = validator.normalizeEmail(request.body.email, { gmail_remove_dots: false });
+  
+    passport.authenticate('local', (error, user, info) => {
+        if (error) { return next(error) }
+        if (!user) {
+            request.flash('errors', info);
+            return response.redirect('/login');
+        }
+        request.logIn(user, (error) => {
+            if (error) { return next(error) }
+            request.flash('success', { msg: 'Success! You are logged in.' });
+            response.redirect(request.session.returnTo || '/quotes');
+        });
+    })(request, response, next);
 }
 
 exports.logout = (request, response) => {
