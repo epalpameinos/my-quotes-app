@@ -8,6 +8,7 @@ const passport = require('passport');
 const session = require('express-session');
 
 const MongoStore = require('connect-mongo');
+const methodOverride = require("method-override");
 const flash = require('express-flash');
 
 const logger = require("morgan");
@@ -35,6 +36,9 @@ app.use(express.json());
 
 //logging
 app.use(logger("dev"));
+
+//use forms for put / delete
+app.use(methodOverride("_method"));
 
 // Sessions
 app.use(

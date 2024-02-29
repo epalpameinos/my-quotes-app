@@ -66,12 +66,20 @@ h1 {
 
 .tiles h4 {
     max-width: 350px;
+    margin-top: 1rem;
+}
+
+.tiles .quote {
     text-decoration: underline;
 }
 
 .tiles span {
     margin-top: 1rem;
     width: 50%;
+}
+
+.user-info {
+    padding: 2rem;
 }
 
 footer {

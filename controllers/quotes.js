@@ -2,6 +2,22 @@
 const Quote = require('../models/Quote');
 
 module.exports = {
+    getProfile: async (request, response) => {
+        try {
+          const quotes = await Quote.find({ user: request.user.id });
+          response.render("profile.ejs", { quotes: quotes, user: request.user });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getFeed: async (request, response) => {
+        try {
+          const quotes = await Quote.find().sort({ createdAt: "desc" }).lean().populate('user');
+          response.render("feed.ejs", { quotes: quotes });
+        } catch (error) {
+            console.log(error);
+        }
+    },
     getQuotes: async (request, response) => {
         try {
             const quoteItems = await Quote.find();
@@ -12,9 +28,15 @@ module.exports = {
     },
     createQuote: async (request, response) => {
         try {
-            await Quote.create({quote: request.body.quoteText, author: request.body.quoteAuthor});
+            await Quote.create({
+                quote: request.body.quoteText, 
+                author: request.body.quoteAuthor,
+                likes: 0,
+                user: request.user.id,
+            });
             console.log('Quote has been added!!');
-            response.redirect('/quotes');
+            response.redirect('/profile');
+            // response.redirect('/quotes');
         } catch(error) {
             console.log(error);
         }

@@ -5,7 +5,8 @@ const User = require('../models/User');
 
 exports.getSignup = (request, response) => {
     if (request.user) {
-        return response.redirect('/quotes');
+        return response.redirect('/profile');
+        // return response.redirect('/quotes');
     }
     response.render('signup');
 }
@@ -45,7 +46,8 @@ exports.postSignup = async (request, response) => {
                 if (error) {
                     console.log(error);
                 }
-                response.redirect('/quotes');
+                response.redirect('/profile');
+                // response.redirect('/quotes');
             });
         } catch (error) {
             console.log(error);
@@ -77,7 +79,8 @@ exports.postSignup = async (request, response) => {
 
 exports.getLogin = (request, response) => {
     if (request.user) {
-        return response.redirect('/quotes');
+        return response.redirect('/profile');
+        // return response.redirect('/quotes');
     }
     response.render('login');
 }
@@ -102,7 +105,8 @@ exports.postLogin = (request, response, next) => {
         request.logIn(user, (error) => {
             if (error) { return next(error) }
             request.flash('success', { msg: 'Success! You are logged in.' });
-            response.redirect(request.session.returnTo || '/quotes');
+            response.redirect(request.session.returnTo || '/profile');
+            // response.redirect(request.session.returnTo || '/quotes');
         });
     })(request, response, next);
 }

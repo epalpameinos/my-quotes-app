@@ -14,8 +14,13 @@
             <div class="alert alert-danger"><%= el.msg %></div>
         <% }) %>    
     <% } %>
+    <% if (locals.messages.info) { %>
+        <% messages.info.forEach( el => { %>
+            <div class="alert alert-info"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
 
-    <h1>Please Signup to your VERY OWN Quotes App!!</h1>
+    <h1>Please Create an account to your VERY OWN Quotes App!!</h1>
 
     <form action="/signup" method="POST" class="signup-form">
         <input type="text" name="userName" placeholder="User Name" class="form-control">
