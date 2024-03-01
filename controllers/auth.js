@@ -6,7 +6,6 @@ const User = require('../models/User');
 exports.getSignup = (request, response) => {
     if (request.user) {
         return response.redirect('/profile');
-        // return response.redirect('/quotes');
     }
     response.render('signup');
 }
@@ -47,7 +46,6 @@ exports.postSignup = async (request, response) => {
                     console.log(error);
                 }
                 response.redirect('/profile');
-                // response.redirect('/quotes');
             });
         } catch (error) {
             console.log(error);
@@ -55,32 +53,11 @@ exports.postSignup = async (request, response) => {
     } catch (error) {
         console.log(error);       
     }
-
-    /* User.findOne({$or: [
-        {email: request.body.email},
-        {userName: request.body.userName}
-      ]}, (error, existingUser) => {
-        if (error) { return next(error) }
-        if (existingUser) {
-            request.flash('errors', { msg: 'Account with that email address or username already exists.' });
-            return response.redirect('../signup');
-        }
-        user.save((error) => {
-            if (error) { return next(error) }
-            request.logIn(user, (error) => {
-                if (error) {
-                    return next(error);
-                }
-                response.redirect('/quotes');
-            });
-        });
-    }); */
 }
 
 exports.getLogin = (request, response) => {
     if (request.user) {
         return response.redirect('/profile');
-        // return response.redirect('/quotes');
     }
     response.render('login');
 }
@@ -106,7 +83,6 @@ exports.postLogin = (request, response, next) => {
             if (error) { return next(error) }
             request.flash('success', { msg: 'Success! You are logged in.' });
             response.redirect(request.session.returnTo || '/profile');
-            // response.redirect(request.session.returnTo || '/quotes');
         });
     })(request, response, next);
 }
