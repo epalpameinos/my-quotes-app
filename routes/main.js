@@ -4,7 +4,7 @@ const router = express.Router();
 const homeController = require("../controllers/home");
 const authController = require('../controllers/auth');
 
-const quotesController = require("../controllers/quotes");
+const postsController = require("../controllers/posts");
 
 const { ensureAuth, ensureGuest } = require('../middleware/auth'); 
 
@@ -16,7 +16,7 @@ router.get('/signup', authController.getSignup);
 router.post('/signup', authController.postSignup);
 router.get('/logout', authController.logout);
 
-router.get("/profile", ensureAuth, quotesController.getProfile);
-router.get("/feed", ensureAuth, quotesController.getFeed);
+router.get("/profile", ensureAuth, postsController.getProfile);
+router.get("/feed", ensureAuth, postsController.getFeed);
 
 module.exports = router;

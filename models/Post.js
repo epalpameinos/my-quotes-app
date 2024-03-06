@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const QuoteSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     quote: {
         type: String,
         required: true,
@@ -28,4 +28,4 @@ const QuoteSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Quote', QuoteSchema);
+module.exports = mongoose.model('Post', PostSchema);

@@ -15,8 +15,9 @@ const logger = require("morgan");
 
 const connectDB = require("./config/database");
 
-const homeRoutes = require("./routes/home");
-const quoteRoutes = require('./routes/quotes');
+const mainRoutes = require("./routes/main");
+const postRoutes = require('./routes/posts');
+// const commentRoutes = require("./routes/comments");
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -57,8 +58,9 @@ app.use(passport.session());
 app.use(flash());
 
 //setup routes for which the server is listening
-app.use("/", homeRoutes);
-app.use('/quotes', quoteRoutes);
+app.use("/", mainRoutes);
+app.use('/post', postRoutes);
+// app.use("comment", commentRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {
