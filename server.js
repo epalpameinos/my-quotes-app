@@ -63,6 +63,8 @@ app.use('/post', postRoutes);
 // app.use("comment", commentRoutes);
 
 //Server Running
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}, you betta catch it..`);
-});
+connectDB().then(
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is running on port ${process.env.PORT}, you betta catch it..`);
+    })
+);
